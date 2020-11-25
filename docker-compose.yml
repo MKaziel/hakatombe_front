@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+  node:
+    container_name: hakathon_front_api_node
+    image: 'node:latest'
+    working_dir: /home/node/app
+    command:
+      - /bin/sh
+      - '-c'
+      - 'npm install && npm start'
+    ports:
+      - '80:80'
+    volumes:
+      - './src:/home/node/app'
+    networks:
+      - my-network
+    env_file:
+      - .env
+networks:
+  my-network:
+    driver: bridge
