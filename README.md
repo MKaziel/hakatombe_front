@@ -17,6 +17,7 @@ https://github.com/MKaziel/Hakatombe
 # Front Repository
 https://github.com/MKaziel/hakatombe_front
 
+# Developpeurs
 Developped by:
   - Alexandre SZABO
   - Zakia GHOULI
