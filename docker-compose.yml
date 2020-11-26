@@ -11,7 +11,7 @@ services:
     ports:
       - '80:80'
     volumes:
-      - './src:/home/node/app'
+      - './hakatombe_front:/home/node/app'
     networks:
       - my-network
     env_file:
