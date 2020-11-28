@@ -1,14 +1,12 @@
-import { Fab } from '@material-ui/core';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 class Formulaire extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            nom: '',
-            prenom: '',
+            fname: '',
+            lname: '',
             email: '',
             projet: ''        
         }
@@ -16,9 +14,9 @@ class Formulaire extends React.Component {
     }
 
     handleChange (e) {
-        const fname = e.target.fname
+        const name = e.target.name
         this.setState({
-            [fname]: e.target.value,
+            [name]: e.target.value,
         })
     }
 
@@ -29,11 +27,11 @@ class Formulaire extends React.Component {
                 <form>
                   <div className="form-group col-md-4">
                     <label htmlFor="fname">Firt name</label>
-                    <input className="form-control" type="text" id="inputFlname" placeholder="ex: Jean" value={this.state.nom} onChange={this.handleChange}/>
+                    <input className="form-control" type="text" id="inputFlname" placeholder="ex: Jean" value={this.state.lname} onChange={this.handleChange}/>
                   </div>
                   <div className="form-group col-md-4">
                     <label htmlFor="lname">Last name</label>
-                    <input className="form-control" type="text" id="inputFlname" placeholder="ex: Duppont" value={this.state.prenom} onChange={this.handleChange}/>
+                    <input className="form-control" type="text" id="inputFlname" placeholder="ex: Duppont" value={this.state.fname} onChange={this.handleChange}/>
                   </div>
                   <div className="form-group col-md-4">
                     <label htmlFor="lname">Email</label>

@@ -13,21 +13,22 @@ class Inscription extends Component{
         fetch('http://localhost:3000/users')
         .then(response => response.json())
         .then(res => {
-            if(res.data) {
-                console.log("res.data",res.data)
+            if(res && res.data) {
+                this.setState({ users:[...this.state.users, ...res.data]})
             }
         })
     }
 
-
-
-
-
-
-
-
-
-
+    renderUsers(){
+      if(this.state.users.length<= 0){
+        return <div>Loading..</div>
+      }
+      else{
+        return this.users.map((val,key) => {
+            return <div key={key}> {val.fname} | {val.lname} | {val.email} | {val.password} </div>
+        });
+      }
+    }
 
 
 
@@ -35,6 +36,7 @@ class Inscription extends Component{
         render(){
             return(
             <div className="container">
+              {this.renderUsers()}
                 <form>
                   <div className="form-group col-md-4">
                     <label htmlFor="InputFirsName">First name</label>
