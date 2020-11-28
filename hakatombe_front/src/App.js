@@ -1,69 +1,52 @@
-import './App.css';
-import axios from 'axios';
+import React, { Component } from "react";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Accueil from "./components/Accueil";
+import Inscription from "./components/Inscription";
+import Formulaire from "./components/Formulaire" ;
 
-function App() {
-  return (
-    <div className="container">
-        <form onSubmit={(e) => register(e)}>
-          <div class="form-group col-md-4">
-            <label for="InputFirsName">First name</label>
-            <input class="form-control" type="text" id="inputFname" placeholder="First name"/>
-          </div>
 
-          <div class="form-group col-md-4">
-            <label for="InputLastName">Last name</label>
-            <input class="form-control" type="text" id="inputLname" placeholder="Last name"/>
-          </div>
+class App extends Component {
 
-          <div class="form-group col-md-4">
-            <label for="inputSchoolName">School name</label>
-            <input class="form-control" type="text" id="inputSchool" placeholder="Last name"/>
-          </div>
+    constructor(props) {
+      super(props);
+      this.state= {
+        users: []
+      }
+    }
 
-          <div class="form-group col-md-4">
-            <label for="inputState">Location</label>
-            <select id="inputLocation" class="form-control">
-              <option selected>Choose location school</option>
-              <option>Paris</option>
-              <option>Saint-Quentin en Yvelines</option>
-              <option>Marne-la-Vallée</option>
-            </select>
-          </div>
+   /* componentDidMount(){
+      fetch('http://localhost:3000/users%27)
+      .then(response => response.json())
+      /.then(res => {
+          if(res && res.data) {
+            console.log(res.data)
+          }
+      })
+      response.then((res) => {
+        console.log(res)
+      })
+    }*/
 
-          <div class="form-group col-md-4">
-            <label for="inputEmail">Email address</label>
-            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"/>
-            {/* <small id="emailHelp" class="form-text text-muted">Notice</small> */}
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputPassword">Password</label>
-            <input type="password" class="form-control" id="inputPassword"/>
-          </div>
+  render(){
 
-          <button type="submit" class="btn btn-primary">Register</button>
-        </form>
-    </div>
-  );
-}
+    return(
+      <Router>
+        <div className="App">
+          <Navbar/>
+          <Route exact path="/" component={Accueil}/>
+          <Route path="/Inscription" component={Inscription}/>
+          <Route path="/Formulaire" component={Formulaire}/>
+        </div>
 
-function register(e){
-  e.preventDefault();
-  let request = {
-    fname : document.getElementById('inputFname').value,
-    lname : document.getElementById('inputLname').value,
-    school : document.getElementById('inputSchool').value,
-    location : document.getElementById('inputLocation').value,
-    email : document.getElementById('exampleInputEmail1').value,
-    password: document.getElementById('inputPassword').value
+        <div>
+
+        </div>
+      </Router>
+    );
   }
 
-  axios.post('http://localhost:3000/users/register', request)
-  .then(resp => {
-      alert(resp.data.message);
-  })
-  .catch(err => {
-    console.log(err);
-  })
+
 }
 
 export default App;

@@ -26,10 +26,19 @@ class Accueil extends Component{
         return <div>Loading..</div>
       }
       else{
-        return this.users.map((val,key) => {
+        return this.state.users.map((val,key) => {
             return <div key={key}> {val.fname} | {val.lname} | {val.email} | {val.projet} </div>
         });
       }
+    }
+
+    render(){
+        return(
+            <div>
+                <h4>Hackamathon information</h4>
+                {this.renderUsers()}
+            </div>
+        );
     }
 
 
