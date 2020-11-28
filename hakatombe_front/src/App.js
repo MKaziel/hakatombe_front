@@ -3,7 +3,8 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Accueil from "./components/Accueil";
 import Inscription from "./components/Inscription";
-import Formulaire from "./components/Formulaire";
+import Formulaire from "./components/Formulaire" ;
+
 
 class App extends Component {
 

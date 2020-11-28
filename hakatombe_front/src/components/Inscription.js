@@ -1,10 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
-const Inscription = () =>{  
-    return(
+class Inscription extends Component{  
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            users: []
+        }
+    }
+    componentDidMount(){
+        fetch('http://localhost:3000/users')
+        .then(response => response.json())
+        .then(res => {
+            if(res.data) {
+                console.log("res.data",res.data)
+            }
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        render(){
+            return(
             <div className="container">
-                <form onSubmit={(e) => register(e)}>
+                <form>
                   <div className="form-group col-md-4">
                     <label htmlFor="InputFirsName">First name</label>
                     <input className="form-control" type="text" id="inputFname" placeholder="First name"/>
@@ -13,6 +44,15 @@ const Inscription = () =>{
                   <div className="form-group col-md-4">
                     <label htmlFor="InputLastName">Last name</label>
                     <input className="form-control" type="text" id="inputLname" placeholder="Last name"/>
+                  </div>
+
+                  <div className="form-group col-md-4">
+                    <label htmlFor="inputEmail">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"/>
+                  </div>
+                  <div className="form-group col-md-4">
+                    <label htmlFor="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="inputPassword"/>
                   </div>
         
                 <div className="form-group col-md-4">
@@ -37,20 +77,13 @@ const Inscription = () =>{
         
                  
         
-                  <div className="form-group col-md-4">
-                    <label htmlFor="inputEmail">Email address</label>
-                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"/>
-                  </div>
-                  <div className="form-group col-md-4">
-                    <label htmlFor="inputPassword">Password</label>
-                    <input type="password" class="form-control" id="inputPassword"/>
-                  </div>
+                  
         
                   <button type="submit" class="btn btn-primary">Register</button>
                 </form>
             </div>
-          );
-
+            );
+        }
         }
 
         /*function register(e){
