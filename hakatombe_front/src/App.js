@@ -16,9 +16,9 @@ class App extends Component {
     }
 
    /* componentDidMount(){
-      fetch('http://localhost:3000/users')
+      fetch('http://localhost:3000/users%27)
       .then(response => response.json())
-      /*.then(res => {
+      /.then(res => {
           if(res && res.data) {
             console.log(res.data)
           }
@@ -34,9 +34,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar/>
-          <Route  path="/.Accueil" component={Accueil}/>
-          <Route exact path="/" component={Inscription}/>
-          <Route path="/Formulaire" component={Formulaire}/>
+          <Route path="/" component={Accueil}/>
+          <Route path="/Inscription" component={Inscription}/>
+          <Route path="/TeamInscription" component={Formulaire}/>
         </div>
 
         <div>
@@ -50,24 +50,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-

@@ -1,6 +1,4 @@
 import  React from "react";
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 //import { withStyles } from '@material-ui/core/styles'
 //const classe = useStyle();
 
@@ -11,8 +9,8 @@ const Navbar = () => {
 
     return(
         <div>
-            <a href="/.Accueil">Hackamathon</a> 
-            <a href="/">Formulaire d'équipes</a>
+            <a href="/">Hackamathon</a> 
+            <a href="/TeamInscription">Formulaire d'équipes</a>
             <a href="/Inscription">Page d'inscription</a>
         </div>
     )

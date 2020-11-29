@@ -5,20 +5,50 @@ class Formulaire extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            fname: '',
-            lname: '',
-            email: '',
-            projet: ''        
+            fname: "",
+            lname: "",
+            email: "",
+            projet: ""       
         }
         this.handleChange = this.handleChange.bind(this)
     }
 
+    async postToData(){
+      try{
+        let result = await fetch('http/localhost:3000/users', {
+          method: 'post',
+          headers: {
+            'Accept': 'application/json',
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({
+            fname:"",
+            lname:"",
+            email: "",
+            projet:""
+          })
+        });
+        console.log(result)
+      }catch(e){
+        console.log(e)
+      }
+    }
+
     handleChange (e) {
-        const name = e.target.name
+        const info = e.target.info
         this.setState({
-            [name]: e.target.value,
+            [info]: e.target.value,
         })
     }
+    sinscrire = event =>{
+      event.preventDefault();
+      this.setState({
+        users: event.target.value
+      })
+
+    }
+
+    
 
 
     render () {
@@ -27,49 +57,27 @@ class Formulaire extends React.Component {
                 <form>
                   <div className="form-group col-md-4">
                     <label htmlFor="fname">Firt name</label>
-                    <input className="form-control" type="text" id="inputFlname" placeholder="ex: Jean" value={this.state.lname} onChange={this.handleChange}/>
+                    <input className="form-control" type="text" id="inputFlname" placeholder="ex: Jean"  onChange={this.handleChange}/>
                   </div>
                   <div className="form-group col-md-4">
                     <label htmlFor="lname">Last name</label>
-                    <input className="form-control" type="text" id="inputFlname" placeholder="ex: Duppont" value={this.state.fname} onChange={this.handleChange}/>
+                    <input className="form-control" type="text" id="inputFlname" placeholder="ex: Duppont"  onChange={this.handleChange}/>
                   </div>
                   <div className="form-group col-md-4">
                     <label htmlFor="lname">Email</label>
-                    <input className="form-control" type="text" id="inputFlname" placeholder="ex: Duppont" value={this.state.email} onChange={this.handleChange}/>
+                    <input className="form-control" type="text" id="inputFlname" placeholder="ex: Duppont@gmail.com"  onChange={this.handleChange}/>
                   </div>
                   <div className="form-group col-md-4">
                     <label htmlFor="lname">Project</label>
-                    <textarea className="form-control" type="text" id="inputFlname" placeholder="ex: Duppont" value={this.state.projet} onChange={this.handleChange}/>
+                    <textarea className="form-control" type="text" id="inputFlname"  onChange={this.handleChange}/>
                   </div>
         
-                  <button type="submit" className="btn btn-primary">Register</button>
+                  <button type="submit" className="btn btn-primary" onClick={this.sinscrire}>Register</button>
                 </form>
             </div>
-            {JSON.stringify(this.state)}
         </div>
         }
 }
 
+
 export default Formulaire;
-//ReactDOM.render(<Forumaile/>, document.querySelector('#Formulaire'))
-
-
-
-/*<div className="container">
-                <form>
-                  <div className="form-group col-md-4">
-                    <label htmlFor="InputFlName">Full name</label>
-                    <input className="form-control" type="text" id="inputFlname" placeholder="ex: Jean Duppont"/>
-                  </div>
-                  <div className="form-group col-md-4">
-                    <label htmlFor="inputEmail">Email address</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="ex: jeanduppont@gmail.com"/>
-                  </div>
-                  <div className="form-group col-md-4">
-                    <label htmlFor="inputProjet">Proposed project</label>
-                    <textarea type="text" class="form-control" id="inputProjet"/>
-                  </div>
-        
-                  <button type="submit" class="btn btn-primary">Register</button>
-                </form>
-            </div>*/
