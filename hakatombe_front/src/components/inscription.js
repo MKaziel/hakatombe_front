@@ -8,26 +8,29 @@ class Inscription extends Component{
         this.state = {
             users: []
         }
-    }
-    componentDidMount(){
-        fetch('http://localhost:3000/users')
-        .then(response => response.json())
-        .then(res => {
-            if(res && res.data) {
-                this.setState({ users:[...this.state.users, ...res.data]})
-            }
-        })
+        this.handleChange = this.handleChange.bind(this);
+
     }
 
-    renderUsers(){
-      if(this.state.users.length<= 0){
-        return <div>Loading..</div>
-      }
-      else{
-        return this.users.map((val,key) => {
-            return <div key={key}> {val.fname} | {val.lname} | {val.email} | {val.password} </div>
-        });
-      }
+    handleChange(event){
+      this.setState({users: event.target.value});
+    }
+
+    addToFormulaire = event =>{
+      event.preventDefault();
+      this.setState({
+        users: event.target.value
+      })
+
+      axios.post('http://localhost:3000/users', {
+          users: this.state.users
+      })
+      .then(response =>  {
+        console.log(response)
+      })
+      .catch(err => {
+        console.log(err);
+      });
     }
 
 
@@ -36,30 +39,29 @@ class Inscription extends Component{
         render(){
             return(
             <div className="container">
-              {this.renderUsers()}
                 <form>
                   <div className="form-group col-md-4">
                     <label htmlFor="InputFirsName">First name</label>
-                    <input className="form-control" type="text" id="inputFname" placeholder="First name"/>
+                    <input className="form-control" type="text" id="inputFname" placeholder="First name"  onChange={this.handleChange}/>
                   </div>
         
                   <div className="form-group col-md-4">
                     <label htmlFor="InputLastName">Last name</label>
-                    <input className="form-control" type="text" id="inputLname" placeholder="Last name"/>
+                    <input className="form-control" type="text" id="inputLname" placeholder="Last name"  onChange={this.handleChange}/>
                   </div>
 
                   <div className="form-group col-md-4">
                     <label htmlFor="inputEmail">Email address</label>
-                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"/>
+                    <input type="email" className="form-control" id="inputEmail" aria-describedby="emailHelp"  onChange={this.handleChange}/>
                   </div>
                   <div className="form-group col-md-4">
                     <label htmlFor="inputPassword">Password</label>
-                    <input type="password" class="form-control" id="inputPassword"/>
+                    <input type="password" className="form-control" id="inputPassword" onChange={this.handleChange}/>
                   </div>
         
                 <div className="form-group col-md-4">
                     <label htmlFor="inputState">School</label>
-                    <select id="inputLocation" class="form-control">
+                    <select id="inputLocation" className="form-control"  onChange={this.handleChange}>
                     <option selected>Choose school</option>
                     <option>Paris</option>
                     <option>Saint-Quentin en Yvelines</option>
@@ -67,13 +69,13 @@ class Inscription extends Component{
                     </select>
                 </div>
 
-                <div className="form-group col-md-4">
+                <div className="form-group col-md-4" >
                     <label htmlFor="inputState">Team</label>
-                    <select id="inputLocation" class="form-control">
+                    <select id="inputLocation" className="form-control" value={this.state.value} onChange={this.handleChange}>
                     <option selected>Choose a team</option>
-                    <option>Les nulls</option>
-                    <option>Les nous</option>
-                    <option>Les vous</option>
+                    <option>Team 1</option>
+                    <option>Team 2</option>
+                    <option>Team 3</option>
                     </select>
                 </div>
         
@@ -81,7 +83,7 @@ class Inscription extends Component{
         
                   
         
-                  <button type="submit" class="btn btn-primary">Register</button>
+                  <button type="submit" className="btn btn-primary" onClick={this.addToFormulaire}>Register</button>
                 </form>
             </div>
             );

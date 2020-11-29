@@ -34,9 +34,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar/>
-          <Route exact path="/" component={Accueil}/>
+          <Route exact path="/Accueil" component={Accueil}/>
           <Route path="/Inscription" component={Inscription}/>
-          <Route path="/Formulaire" component={Formulaire}/>
+          <Route exact path="/" component={Formulaire}/>
         </div>
 
         <div>
