@@ -12,6 +12,11 @@ Project Developpement : Register for a Hackathon weekend with multiple schools
   + User : user
 - Everyone : guest
 
+## Indication pour le .env
+Deux ficheir .env.sample sont fournis ici:
+  - Il faut renommer le premier en ".env" pour permet à docker de se lancer
+  - Il faut renommer le second en ".env" qui se trouve dans le sous-dossier "hakatombe_front", celuic-i permet au client node de démarrer sur un port précis déjà fourni.
+
 # Back Repository
 https://github.com/MKaziel/Hakatombe
 # Front Repository
