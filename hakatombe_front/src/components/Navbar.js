@@ -9,8 +9,8 @@ const Navbar = () => {
 
     return(
         <div>
-            <a href="/.Accueil">Hackamathon</a> 
-            <a href="/">Formulaire d'équipes</a>
+            <a href="/">Hackamathon</a> 
+            <a href="/TeamInscription">Formulaire d'équipes</a>
             <a href="/Inscription">Page d'inscription</a>
         </div>
     )

@@ -1,37 +1,45 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import axios from 'axios';
 
-class Accueil extends Component{
-   state = {
-       post: {}
-   }
+class Accueil extends Component {
+    state = [];
 
-    // GET the data 
+    constructor(props){
+        super(props);
+        this.state = {
+            post: {},
+        };
+    }    
+
+    // GET the data
     // Récupere les données des gens qui ont rempli le formulaire d'équipe
     // On récupère le nom le prenom l'@ mail et le projet proposé
-    componentDidMount(){
-        fetch('http://localhost:3000/users')
-        .then(response => response.json())
-        .then(res => {
-            setTimeout(() => {
-                this.setState({post: result})
-            }, 1500)
-        })
+    componentDidMount() {
+        var baseUrl = 'http://localhost:3000';
+        var otherurl='https://jsonplaceholder.typicode.com/users'
+        axios.get(otherurl)
+        .then(function (response) {
+            this.setState({
+                post: response,
+            });
+        });
     }
 
-    
-
-    render(){
-        return(
-            <div>
-                <h4>Hackamathon information</h4>
-                {this.state.post}
-            </div>
-        );
+    render() {
+        let array = null;
+        console.log(this.state);
+        if (array !== null){
+            return (
+                <div>
+                    <h4>Hackamathon information</h4>
+                    <ul>
+                        {array.map(item => {return <li>{item}</li>;})}
+                    </ul>
+                </div>
+            );
+        }
+        
     }
-
-
-
-
 }
 
 export default Accueil;
