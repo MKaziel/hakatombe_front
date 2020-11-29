@@ -2,24 +2,19 @@ import React, { Component } from "react";
 import axios from 'axios';
 
 class Accueil extends Component {
-    state = [];
-
-    constructor(props){
-        super(props);
-        this.state = {
-            post: {},
-        };
-    }    
+    static state = {
+        post: {},
+    }; 
 
     // GET the data
     // Récupere les données des gens qui ont rempli le formulaire d'équipe
     // On récupère le nom le prenom l'@ mail et le projet proposé
     componentDidMount() {
         var baseUrl = 'http://localhost:3000';
-        var otherurl='https://jsonplaceholder.typicode.com/users'
-        axios.get(otherurl)
+        let currentComponent = this;
+        axios.get(baseUrl+"/users")
         .then(function (response) {
-            this.setState({
+            currentComponent.setState({
                 post: response,
             });
         });
@@ -35,6 +30,12 @@ class Accueil extends Component {
                     <ul>
                         {array.map(item => {return <li>{item}</li>;})}
                     </ul>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    <h4>Hackamathon information</h4>
                 </div>
             );
         }
